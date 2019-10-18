@@ -8,8 +8,8 @@ class GameBoard extends Component {
     super(props)
 
     this.state = {
-      cards: [1, 2, 3],
-      contacts: []
+      contacts: [],
+      searchText: ''
     }
   }
 
@@ -21,15 +21,22 @@ class GameBoard extends Component {
       });
   }
 
+
+  handleInput = (searchText) => {
+    this.setState({searchText: searchText});
+
+    
+  }
+
   render() {
     return (
       <div>
         <div>
-          <SearchField />
+          <SearchField searchContact={this.handleInput}/>
         </div>
         <div className="cards-container">
           {this.state.contacts.map((data, index) => {
-            return <Card key={index} name={data.name} number={data.phone} />
+            return <Card key={index} name={data.name} number={data.phone} email={data.email}/>
           })}
         </div>
       </div>
