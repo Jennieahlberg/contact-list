@@ -8,7 +8,7 @@ class Card extends Component {
       <div>
         <div className="card-container">
           <div className="card">
-            <div className="front" onClick={() => {return true}}>
+            <div className="front" onClick={() => { return true }}>
               <p>{this.props.name}</p>
             </div>
             <div className="back">

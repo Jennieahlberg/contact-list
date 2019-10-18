@@ -3,13 +3,14 @@ import './phoneBook.css';
 import Card from '../card/card';
 import SearchField from '../searchField/searchField';
 
-class GameBoard extends Component {
+class PhoneBook extends Component {
   constructor(props) {
     super(props)
 
     this.state = {
       contacts: [],
-      searchText: ''
+      searchText: '',
+      updatedList: []
     }
   }
 
@@ -17,26 +18,28 @@ class GameBoard extends Component {
     fetch('https://jsonplaceholder.typicode.com/users')
       .then(response => response.json())
       .then((json) => {
-        this.setState({ contacts: json });
+        this.setState({ contacts: json, updatedList: json });
       });
   }
 
-
-  handleInput = (searchText) => {
-    this.setState({searchText: searchText});
-
-    
+  searchContact = (event) => {
+    this.setState({ searchText: event });
+    var updatedList = this.state.contacts;
+    updatedList = updatedList.filter(function (item) {
+      return item.name.toLowerCase().search(event.toLowerCase()) !== -1;
+    });
+    this.setState({ updatedList: updatedList });
   }
 
   render() {
     return (
       <div>
         <div>
-          <SearchField searchContact={this.handleInput}/>
+          <SearchField searchContact={this.searchContact} />
         </div>
         <div className="cards-container">
-          {this.state.contacts.map((data, index) => {
-            return <Card key={index} name={data.name} number={data.phone} email={data.email}/>
+          {this.state.updatedList.map((data, index) => {
+            return <Card key={index} name={data.name} number={data.phone} email={data.email} />
           })}
         </div>
       </div>
@@ -44,4 +47,4 @@ class GameBoard extends Component {
   }
 }
 
-export default GameBoard;
+export default PhoneBook;

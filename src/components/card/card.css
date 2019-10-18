@@ -4,7 +4,6 @@
   height: 150px;
   perspective: 1000px;
   margin: 20px;
-  
 }
 
 .card {
@@ -15,7 +14,6 @@
   transition: transform 1s;
   transform-style: preserve-3d;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-  border-radius: 4px;
 }
 
 .card-container:hover .card {
@@ -27,12 +25,10 @@
   width: 100%;
   height: 100%;
   backface-visibility: hidden;
-  border-radius: 4px;
 }
 
 .front {
   background-color: #ff6f61;
-  color: white;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -40,7 +36,6 @@
 
 .back {
   background-color: #3b8271;
-  color: white;
   transform: rotateY(180deg);
   display: flex;
   justify-content: center;
